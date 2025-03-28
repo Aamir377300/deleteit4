@@ -1,7 +1,7 @@
 pipeline {
-    agent any  // ✅ FIXED: Changed 'agents' to 'agent' and removed '{}'
+    agent any
 
-    tools {  // ✅ FIXED: 'tools' should be inside 'pipeline', not inside 'agent'
+    tools {  
         maven 'maven'
     }
 
@@ -20,8 +20,6 @@ pipeline {
             steps {
                 script {
                     def output = sh(script: 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar', returnStdout: true).trim()
-
-                    // Print output
                     echo "Output from JAR: ${output}"
                 }
             }
