@@ -1,20 +1,20 @@
-pipeline{
-    agent any{   // ❌ Incorrect syntax. 'agent any' should not have '{}'
-        tools{   // ❌ Wrong placement. 'tools' should be inside 'pipeline', not inside 'agent'
-            maven 'maven'
-        }
+pipeline {
+    agent any  // ✅ FIXED: Removed unnecessary '{}'
 
-        stages{  // ❌ 'stages' should be at the same level as 'agent', not inside it
-            stage('Build'){
-                steps{
-                    sh 'mvn clean package'
-                }
-            }
-            stage('Test'){
-                steps{
-                    sh 'mvn test'
-                }
+    tools {  // ✅ FIXED: Moved 'tools' inside 'pipeline', not inside 'agent'
+        maven 'maven'
+    }
+
+    stages {  // ✅ FIXED: 'stages' is now correctly placed at the same level as 'agent'
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
             }
         }
-    }  // ❌ Extra closing bracket. 'agent any' should not contain nested elements
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+    }
 }
