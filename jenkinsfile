@@ -1,10 +1,10 @@
 pipeline{
-    agent any{
-        tools{
+    agent any{   // ❌ Incorrect syntax. 'agent any' should not have '{}'
+        tools{   // ❌ Wrong placement. 'tools' should be inside 'pipeline', not inside 'agent'
             maven 'maven'
         }
 
-        stages{
+        stages{  // ❌ 'stages' should be at the same level as 'agent', not inside it
             stage('Build'){
                 steps{
                     sh 'mvn clean package'
@@ -15,7 +15,6 @@ pipeline{
                     sh 'mvn test'
                 }
             }
-            
         }
-    }
+    }  // ❌ Extra closing bracket. 'agent any' should not contain nested elements
 }
