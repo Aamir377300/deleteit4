@@ -1,6 +1,13 @@
+// This is a Jenkinsfile, which defines a Jenkins pipeline—an automated process to build, test, and run a Java application using Maven.
+
+// What is a Jenkins Pipeline?
+
+// A Jenkins pipeline is a series of automated steps defined in code to build, test, and deploy applications. It helps in Continuous Integration (CI) and Continuous Deployment (CD) by automating repetitive tasks.
+
+
 pipeline {
     agent any
-
+;
     tools {  
         maven 'maven'
     }
@@ -8,7 +15,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean package' // sh command stands for Shell Script Execution.
             }
         }
         stage('Test') {
